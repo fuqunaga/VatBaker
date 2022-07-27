@@ -1,0 +1,20 @@
+{
+  "name": "ga.fuquna.vatbaker",
+  "version": "0.0.0",
+  "displayName": "Vat Baker",
+  "description": "VAT(Vertex Animation Texture) Baker",
+  "unity": "2021.3",
+  "documentationUrl": "https://github.com/fuqunaga/VatBaker#readme",
+  "license": "MIT",
+  "keywords": [
+    "unity",
+    "sync",
+    "mirror"
+  ],
+  "author": {
+    "name": "fuqunaga",
+    "email": "fukhid@gmail.com",
+    "url": "https://fuquna.ga"
+  },
+  "repository": "github:fuqunaga/VatBaker"
+}
