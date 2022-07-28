@@ -4,7 +4,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace VatBaker
+namespace VatBaker.Editor
 {
     public class VatBakerWindowForAnimation : EditorWindow
     {

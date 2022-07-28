@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace VatBaker.Example
 {
     public class PerformanceTest : MonoBehaviour
@@ -43,7 +42,7 @@ namespace VatBaker.Example
                 // Set random animation time offset
                 var r = go.GetComponentInChildren<Renderer>();
                 var mpb = new MaterialPropertyBlock();
-                var animLength = r.sharedMaterial.GetFloat(VatBakerCore.VatAnimLength);
+                var animLength = r.sharedMaterial.GetFloat(VatShaderProperty.VatAnimLength);
                 mpb.SetFloat(AnimationTimeOffset, Random.value * animLength);
                 r.SetPropertyBlock(mpb);
                     

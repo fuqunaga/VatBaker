@@ -6,16 +6,12 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace VatBaker
+namespace VatBaker.Editor
 {
     public static class VatBakerCore
     {
         public static readonly int MainTex = Shader.PropertyToID("_MainTex");
         public static readonly int NormalTex = Shader.PropertyToID("_NormalTex");
-        public static readonly int VatPositionTex = Shader.PropertyToID("_VatPositionTex");
-        public static readonly int VatNormalTex = Shader.PropertyToID("_VatNormalTex");
-        public static readonly int VatAnimFps = Shader.PropertyToID("_VatAnimFps");
-        public static readonly int VatAnimLength = Shader.PropertyToID("_VatAnimLength");
         
         private static readonly int BaseShaderBumpMap = Shader.PropertyToID("_BumpMap");
 
@@ -97,10 +93,10 @@ namespace VatBaker
             {
                 mat.SetTexture(NormalTex, normalTex);
             }
-            mat.SetTexture(VatPositionTex, posTex);
-            mat.SetTexture(VatNormalTex, normTex);
-            mat.SetFloat(VatAnimFps, fps);
-            mat.SetFloat(VatAnimLength, animLength);
+            mat.SetTexture(VatShaderProperty.VatPositionTex, posTex);
+            mat.SetTexture(VatShaderProperty.VatNormalTex, normTex);
+            mat.SetFloat(VatShaderProperty.VatAnimFps, fps);
+            mat.SetFloat(VatShaderProperty.VatAnimLength, animLength);
 
             var go = new GameObject(name);
             go.AddComponent<MeshRenderer>().sharedMaterial = mat;
