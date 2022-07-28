@@ -6,7 +6,7 @@ MonoImporter:
   defaultReferences:
   - m_ViewDataDictionary: {instanceID: 0}
   - gameObject: {instanceID: 0}
-  - playShader: {fileID: 4800000, guid: 481a6342e075c7241bbaa4a3ed355f13, type: 3}
+  - sampleShader: {fileID: 4800000, guid: 481a6342e075c7241bbaa4a3ed355f13, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -10,17 +10,17 @@ namespace VatBaker
 {
     public static class VatBakerCore
     {
-        private static readonly int MainTex = Shader.PropertyToID("_MainTex");
-        private static readonly int NormalTex = Shader.PropertyToID("_NormalTex");
-        private static readonly int VatPositionTex = Shader.PropertyToID("_VatPositionTex");
-        private static readonly int VatNormalTex = Shader.PropertyToID("_VatNormalTex");
-        private static readonly int VatAnimFps = Shader.PropertyToID("_VatAnimFps");
-        private static readonly int VatAnimLength = Shader.PropertyToID("_VatAnimLength");
+        public static readonly int MainTex = Shader.PropertyToID("_MainTex");
+        public static readonly int NormalTex = Shader.PropertyToID("_NormalTex");
+        public static readonly int VatPositionTex = Shader.PropertyToID("_VatPositionTex");
+        public static readonly int VatNormalTex = Shader.PropertyToID("_VatNormalTex");
+        public static readonly int VatAnimFps = Shader.PropertyToID("_VatAnimFps");
+        public static readonly int VatAnimLength = Shader.PropertyToID("_VatAnimLength");
         
         private static readonly int BaseShaderBumpMap = Shader.PropertyToID("_BumpMap");
 
 
-        public static (Texture2D, Texture2D) BakeClip(GameObject gameObject, SkinnedMeshRenderer skin, AnimationClip clip, float fps, Space space)
+        public static (Texture2D, Texture2D) BakeClip(string name, GameObject gameObject, SkinnedMeshRenderer skin, AnimationClip clip, float fps, Space space)
         {
             var vertexCount = skin.sharedMesh.vertexCount;
             var frameCount = Mathf.FloorToInt(clip.length * fps);
@@ -29,14 +29,14 @@ namespace VatBaker
 
             var posTex = new Texture2D(vertexCount, frameCount, TextureFormat.RGBAHalf, false, true)
             {
-                name = $"{gameObject.name}.{clip.name}.posTex",
+                name = $"{name}.posTex",
                 filterMode = FilterMode.Bilinear,
                 wrapMode = TextureWrapMode.Repeat
             };
             
             var normTex = new Texture2D(vertexCount, frameCount, TextureFormat.RGBAHalf, false, true)
             {
-                name = $"{gameObject.name}.{clip.name}.normTex",
+                name = $"{name}.normTex",
                 filterMode = FilterMode.Bilinear,
                 wrapMode = TextureWrapMode.Repeat
             };

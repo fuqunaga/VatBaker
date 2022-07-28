@@ -5,7 +5,7 @@ ModelImporter:
   internalIDToNameTable:
   - first:
       74: -8376859586969802253
-    second: CINEMA_4D_Principal
+    second: walk
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -36,7 +36,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: CINEMA_4D_Principal
+      name: walk
       takeName: CINEMA_4D_Principal
       internalID: 0
       firstFrame: 0

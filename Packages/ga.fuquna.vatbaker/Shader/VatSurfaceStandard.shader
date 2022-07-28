@@ -4,6 +4,7 @@ Shader "VatBaker/VatSurfaceStandard"
     {
         _MainTex ("MainTex", 2D) = "white" {}
         _NormalTex("NormalTex", 2D) = "white" {}
+        _AnimationTimeOffset("AnimationTimeOffset", float) = 0.0
         _VatPositionTex ("VatPositionTex", 2D) = "white" {}
         _VatNormalTex ("VatNormalTex", 2D) = "white" {}
         _VatAnimFps("VatAnimFps", float) = 5.0
@@ -27,7 +28,6 @@ Shader "VatBaker/VatSurfaceStandard"
             float4 texcoord : TEXCOORD0;
             float4 texcoord1 : TEXCOORD1;
             float4 texcoord2 : TEXCOORD2;
-            float4 texcoord3 : TEXCOORD3;
             fixed4 color : COLOR;
             UNITY_VERTEX_INPUT_INSTANCE_ID
             uint vId : SV_VertexID;
@@ -42,9 +42,15 @@ Shader "VatBaker/VatSurfaceStandard"
         sampler2D _MainTex;
         sampler2D _NormalTex;
 
+        UNITY_INSTANCING_BUFFER_START(Props)
+           UNITY_DEFINE_INSTANCED_PROP(float, _AnimationTimeOffset)
+        UNITY_INSTANCING_BUFFER_END(Props)
+        
         void vert (inout appdata v)
         {
-            float animationTime = CalcVatAnimationTime(_Time.y);
+            UNITY_SETUP_INSTANCE_ID(v);
+            
+            float animationTime = CalcVatAnimationTime(_Time.y + UNITY_ACCESS_INSTANCED_PROP(Props, _AnimationTimeOffset));
             v.vertex.xyz = GetVatPosition(v.vId, animationTime);
             v.normal.xyz = GetVatNormal(v.vId, animationTime);
         }
