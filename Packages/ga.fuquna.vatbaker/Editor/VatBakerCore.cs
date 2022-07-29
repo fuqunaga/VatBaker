@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -102,19 +103,28 @@ namespace VatBaker.Editor
             go.AddComponent<MeshRenderer>().sharedMaterial = mat;
             go.AddComponent<MeshFilter>().sharedMesh = skin.sharedMesh;
 
-            AssetDatabase.CreateAsset(posTex, Path.Combine(subFolderPath, posTex.name + ".asset"));
-            AssetDatabase.CreateAsset(normTex, Path.Combine(subFolderPath, normTex.name + ".asset"));
-            AssetDatabase.CreateAsset(mat, Path.Combine(subFolderPath, $"{name}.mat"));
-            var prefab = PrefabUtility.SaveAsPrefabAssetAndConnect(go, Path.Combine(subFolderPath, go.name + ".prefab"), InteractionMode.AutomatedAction);
+            AssetDatabase.CreateAsset(posTex, CreatePath(subFolderPath, posTex.name, "asset"));
+            AssetDatabase.CreateAsset(normTex, CreatePath(subFolderPath, normTex.name, "asset"));
+            AssetDatabase.CreateAsset(mat, CreatePath(subFolderPath, name, "mat"));
+            var prefab = PrefabUtility.SaveAsPrefabAssetAndConnect(go, 
+                CreatePath(subFolderPath, go.name, "prefab"),
+                InteractionMode.AutomatedAction);
+            
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             
             EditorGUIUtility.PingObject(prefab);
+
+            static string CreatePath(string folder, string file, string extension) 
+                => Path.Combine(folder, $"{ReplaceInvalidPathChar(file)}.{extension}");
         }
 
 
         static string CombinePathAndCreateFolderIfNotExist(string parent, string folderName, bool unique = true)
         {
+            parent = ReplaceInvalidPathChar(parent);
+            folderName = ReplaceInvalidPathChar(folderName);
+            
             var path = Path.Combine(parent, folderName);
             
             if (unique)
@@ -128,6 +138,14 @@ namespace VatBaker.Editor
             }
 
             return path;
+
+        }
+        
+        static readonly string InvalidChars = new string(Path.GetInvalidPathChars());
+        
+        static string ReplaceInvalidPathChar(string path)
+        {
+            return Regex.Replace(path, $"[{InvalidChars}]", "_");
         }
     }
 }

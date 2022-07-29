@@ -3,8 +3,8 @@ Shader "VatBaker/VatUnlit"
     Properties
     {
         _MainTex ("MainTex", 2D) = "white" {}
-        _VatPositionTex ("VatPositionTex", 2D) = "white" {}
         _AnimationTimeOffset("AnimationTimeOffset", float) = 0.0
+        _VatPositionTex ("VatPositionTex", 2D) = "white" {}
         _VatAnimFps("VatAnimFps", float) = 5.0
         _VatAnimLength("VatAnimLength", float) = 5.0
     }

@@ -11,10 +11,9 @@ namespace VatBaker.Editor
         [MenuItem("Window/VatBaker/Animation")]
         static void ShowWindow() => GetWindow<VatBakerWindowForAnimation>();
 
-        
         public GameObject gameObject;
-        public Space space;
-        public int animationFps = 10;
+        public Space space = Space.Self;
+        public int animationFps = 5;
         public Shader sampleShader;
         
         private SkinnedMeshRenderer _skin;
@@ -23,7 +22,8 @@ namespace VatBaker.Editor
 
         private void OnEnable()
         {
-            if (Selection.activeObject is GameObject go)
+            if (Selection.activeObject is GameObject go
+                && go.gameObject.GetComponentInChildren<SkinnedMeshRenderer>() != null)
             {
                 gameObject = go;
             }

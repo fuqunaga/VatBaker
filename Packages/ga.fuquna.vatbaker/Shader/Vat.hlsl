@@ -1,3 +1,6 @@
+#ifndef GA_FUQUNA_VATBAKER_VAT_INCLUDED
+#define GA_FUQUNA_VATBAKER_VAT_INCLUDED
+
 sampler2D _VatPositionTex;
 float4 _VatPositionTex_TexelSize; // (1.0/width, 1.0/height, width, height) // https://docs.unity3d.com/Manual/SL-PropertiesInPrograms.html
 
@@ -30,3 +33,5 @@ inline float3 GetVatNormal(uint vertexId, float animationTime)
 {
     return tex2Dlod(_VatNormalTex, CalcVatTexCoord(vertexId, animationTime));
 }
+
+#endif
