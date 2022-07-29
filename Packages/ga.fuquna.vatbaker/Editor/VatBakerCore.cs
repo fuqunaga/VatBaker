@@ -20,9 +20,7 @@ namespace VatBaker.Editor
         public static (Texture2D, Texture2D) BakeClip(string name, GameObject gameObject, SkinnedMeshRenderer skin, AnimationClip clip, float fps, Space space)
         {
             var vertexCount = skin.sharedMesh.vertexCount;
-            var frameCount = Mathf.FloorToInt(clip.length * fps);
-
-            var mesh = new Mesh();
+            var frameCount = Mathf.FloorToInt(clip.length * fps) + 1; // for loop
 
             var posTex = new Texture2D(vertexCount, frameCount, TextureFormat.RGBAHalf, false, true)
             {
@@ -44,6 +42,11 @@ namespace VatBaker.Editor
             using var poolNorm0 = ListPool<Vector3>.Get(out var tmpNormalList);
             using var poolNorm1 = ListPool<Vector3>.Get(out var localNormals);
 
+            // SkinnedMeshRenderer.BakeMesh() uses the transform
+            // but is not used in the actual display, so it is reset during Bake
+            using var tranScope = TransformCacheScope.ResetScope(skin.transform);
+
+            var mesh = new Mesh();
             var dt = 1f / fps;
             for (var i = 0; i < frameCount; i++)
             {
@@ -60,12 +63,12 @@ namespace VatBaker.Editor
             var trans = gameObject.transform;
             var (vertices, normals) = space switch
             {
-                Space.Self => (localVertices, localNormals),
-                Space.World => (
-                    localVertices.Select(vtx => trans.TransformPoint(vtx)),
-                    localNormals.Select(norm => trans.TransformDirection(norm))
-                    )
-                ,
+                Space.Self => (
+                    localVertices.Select(vtx => trans.InverseTransformPoint(vtx)),
+                    localNormals.Select(norm => trans.InverseTransformDirection(norm))
+                ),
+                Space.World => (localVertices, localNormals),
+
                 _ => throw new ArgumentOutOfRangeException(nameof(space), space, null)
             };
             
@@ -86,9 +89,12 @@ namespace VatBaker.Editor
             var folderPath = CombinePathAndCreateFolderIfNotExist("Assets", folderName, false);
             var subFolderPath = CombinePathAndCreateFolderIfNotExist(folderPath, name);
 
-            var mat = new Material(shader);
+            var mat = new Material(shader)
+            {
+                enableInstancing = true
+            };
+
             mat.SetTexture(MainTex, skin.sharedMaterial.mainTexture);
-            
             var normalTex = skin.sharedMaterial.GetTexture(BaseShaderBumpMap);
             if (normalTex != null)
             {
