@@ -8,7 +8,7 @@ namespace VatBaker.Editor
 {
     public class VatBakerWindowForAnimation : EditorWindow
     {
-        [MenuItem("Window/VatBaker/Animation")]
+        [MenuItem("Window/VatBaker")]
         static void ShowWindow() => GetWindow<VatBakerWindowForAnimation>();
 
         public GameObject gameObject;
