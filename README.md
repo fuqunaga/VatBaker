@@ -45,4 +45,11 @@ Select `VatBaker` and click the Install button
 
 
 # Example Asset
-[Rhino Animation Walk](https://sketchfab.com/3d-models/rhino-animation-walk-a915d9179fe6422b9d669a3a0d726b8e) © GremorySaiyan [(Licensed under CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+
+- [Rhino Animation Walk](https://sketchfab.com/3d-models/rhino-animation-walk-a915d9179fe6422b9d669a3a0d726b8e) © GremorySaiyan [(Licensed under CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)
+
+
+# Reference
+
+- [VertexAnimator](https://github.com/nobnak/VertexAnimator)
+- [Animation-Texture-Baker](https://github.com/sugi-cho/Animation-Texture-Baker)
