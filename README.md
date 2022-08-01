@@ -53,3 +53,4 @@ Select `VatBaker` and click the Install button
 
 - [VertexAnimator](https://github.com/nobnak/VertexAnimator)
 - [Animation-Texture-Baker](https://github.com/sugi-cho/Animation-Texture-Baker)
+
