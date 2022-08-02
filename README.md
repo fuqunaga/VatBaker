@@ -9,6 +9,14 @@ A tool to bake [VAT (Vertex Animation Texture)][VAT] from AnimationClip with sam
 
 # Installation
 
+Add the following address to UnityPackageManager gitURL.
+
+```
+https://github.com/fuqunaga/VatBaker.git?path=Packages/ga.fuquna.vatbaker
+```
+
+<!--
+
 [scoped registry]: https://docs.unity3d.com/Manual/upm-scoped.html
 
 
@@ -32,17 +40,49 @@ Select `MyRegistries` in `Packages:`
 
 Select `VatBaker` and click the Install button
 
+-->
 
 # Usage
 
 1. **Window > VatBaker**
-1. Set a GamObject with Animation and SkinnedMeshRenderer
+1. Set a GamObject with Animation and SkinnedMeshRenderer.
 1. (Optional) Set other parameters.
 1. Push the Bake button.
-1. Assets are created under `Assets/VatBakerOutput`, a VAT GameObject is created in the hierarchy.
+1. Assets are created under `Assets/VatBakerOutput` and a VAT GameObject is put in the hierarchy.
 
 ![](Documentation~/vatbaker_window.webp)
 
+
+# Use VAT on your shader
+
+
+Set the assets under `Assets/VatBakerOutput` to the material.
+
+| Property name   | Asset               |
+| --------------- | ------------------- |
+| _VatPositionTex | *.posTex.asset |
+| _VatNormalTex   | *.normTex.asset   |
+
+
+Use VAT functions at the vertex shader.
+
+```hlsl
+#include `Packages/ga.fuquna.vatbaker/Shader/vat.hlsl`
+```
+
+vertex shader
+
+```hlsl
+float animationTime = CalcVatAnimationTime(<baseTime[sec]>);
+float vertexPositionLocal = GetVatPosition(vertexId, animationTime);
+float vertexNormalLocal = GetVatNormal(vertexId, animationTime);
+```
+
+See [VatUnlit.shader][VatUnlit], [VatSurfaceStandard.shader][VatSurfaceStandard]
+
+[VatUnlit]:https://github.com/fuqunaga/VatBaker/blob/main/Packages/ga.fuquna.vatbaker/Shader/VatUnlit.shader
+
+[VatSurfaceStandard]:https://github.com/fuqunaga/VatBaker/blob/main/Packages/ga.fuquna.vatbaker/Shader/VatSurfaceStandard.shader
 
 # Example Asset
 
@@ -50,7 +90,7 @@ Select `VatBaker` and click the Install button
 
 
 # Reference
-
+- [Texture Animation: Applying Morphing and Vertex Animation Techniques](https://medium.com/tech-at-wildlife-studios/texture-animation-techniques-1daecb316657)
 - [VertexAnimator](https://github.com/nobnak/VertexAnimator)
 - [Animation-Texture-Baker](https://github.com/sugi-cho/Animation-Texture-Baker)
 
