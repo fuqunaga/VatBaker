@@ -9,17 +9,6 @@ A tool to bake [VAT (Vertex Animation Texture)][VAT] from AnimationClip with sam
 
 # Installation
 
-Add the following address to UnityPackageManager gitURL.
-
-```
-https://github.com/fuqunaga/VatBaker.git?path=Packages/ga.fuquna.vatbaker
-```
-
-<!--
-
-[scoped registry]: https://docs.unity3d.com/Manual/upm-scoped.html
-
-
 **Edit > ProjectSettings... > Package Manager > Scoped Registries**
 
 Enter the following and click the Save button.
@@ -40,7 +29,6 @@ Select `MyRegistries` in `Packages:`
 
 Select `VatBaker` and click the Install button
 
--->
 
 # Usage
 
@@ -55,16 +43,7 @@ Select `VatBaker` and click the Install button
 
 # Use VAT on your shader
 
-
-Set the assets under `Assets/VatBakerOutput` to the material.
-
-| Property name   | Asset               |
-| --------------- | ------------------- |
-| _VatPositionTex | *.posTex.asset |
-| _VatNormalTex   | *.normTex.asset   |
-
-
-Use VAT functions at the vertex shader.
+### Use VAT functions at the vertex shader.
 
 ```hlsl
 #include `Packages/ga.fuquna.vatbaker/Shader/vat.hlsl`
@@ -83,6 +62,20 @@ See [VatUnlit.shader][VatUnlit], [VatSurfaceStandard.shader][VatSurfaceStandard]
 [VatUnlit]:https://github.com/fuqunaga/VatBaker/blob/main/Packages/ga.fuquna.vatbaker/Shader/VatUnlit.shader
 
 [VatSurfaceStandard]:https://github.com/fuqunaga/VatBaker/blob/main/Packages/ga.fuquna.vatbaker/Shader/VatSurfaceStandard.shader
+
+
+### Set material properties for VAT.  
+
+| Property name   | Value               |
+| --------------- | ------------------- |
+| _VatPositionTex | Assets/VatBakderOutput/\*/\*.posTex.asset |
+| _VatNormalTex   | Assets/VatBakderOutput/\*/\*.normTex.asset   |
+| _VatAnimFps   | Baked animation fps   |
+| _VatAnimLength   | Baked animation length[sec]   |
+
+It is recommended to duplicate the material under Assets/VatBakerOutput and change the shader so that the original property values can be used as they are.
+
+
 
 # Example Asset
 
