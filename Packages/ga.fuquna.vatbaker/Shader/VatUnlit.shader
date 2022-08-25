@@ -39,6 +39,7 @@ Shader "VatBaker/VatUnlit"
                 float3 pos = GetVatPosition(vId, animTime);
 
                 v2f_img o;
+                UNITY_INITIALIZE_OUTPUT(v2f_img, o);
                 o.pos = UnityObjectToClipPos(pos);
                 o.uv = TRANSFORM_TEX(v.texcoord, _MainTex);
                 return o;
