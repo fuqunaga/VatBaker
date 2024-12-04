@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/fuqunaga/VatBaker/compare/v1.0.3...v1.0.4) (2024-12-04)
+
+
+### Bug Fixes
+
+* Vat.hlsl warnings ([66002ff](https://github.com/fuqunaga/VatBaker/commit/66002fff450077cedeaa7e7ec7ca1b8e46af4401))
+
 ## [1.0.3](https://github.com/fuqunaga/VatBaker/compare/v1.0.2...v1.0.3) (2022-08-25)
 
 
