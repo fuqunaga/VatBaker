@@ -26,12 +26,12 @@ inline float4 CalcVatTexCoord(uint vertexId, float animationTime)
 
 inline float3 GetVatPosition(uint vertexId, float animationTime)
 {
-    return tex2Dlod(_VatPositionTex, CalcVatTexCoord(vertexId, animationTime));
+    return (float3)tex2Dlod(_VatPositionTex, CalcVatTexCoord(vertexId, animationTime));
 }
 
 inline float3 GetVatNormal(uint vertexId, float animationTime)
 {
-    return tex2Dlod(_VatNormalTex, CalcVatTexCoord(vertexId, animationTime));
+    return (float3)tex2Dlod(_VatNormalTex, CalcVatTexCoord(vertexId, animationTime));
 }
 
 #endif
