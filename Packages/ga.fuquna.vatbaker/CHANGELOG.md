@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/fuqunaga/VatBaker/compare/v1.0.4...v1.0.5) (2025-03-03)
+
+
+### Bug Fixes
+
+* Update package.json ([8497729](https://github.com/fuqunaga/VatBaker/commit/84977295ab52afcd5491314283bc3900bb9adace))
+
 ## [1.0.4](https://github.com/fuqunaga/VatBaker/compare/v1.0.3...v1.0.4) (2024-12-04)
 
 
