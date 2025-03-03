@@ -1,5 +1,8 @@
 # VatBaker
 
+[![npm version](https://badge.fury.io/js/ga.fuquna.vatbaker.svg)](https://badge.fury.io/js/ga.fuquna.vatbaker)
+[![openupm](https://img.shields.io/npm/v/ga.fuquna.vatbaker?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/ga.fuquna.vatbaker/)
+
 A tool to bake [VAT (Vertex Animation Texture)][VAT] from AnimationClip with sample shaders for Unity.
 
 [VAT]:https://medium.com/tech-at-wildlife-studios/texture-animation-techniques-1daecb316657
